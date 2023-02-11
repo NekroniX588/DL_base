@@ -12,9 +12,10 @@ class OCRDataset(torch.utils.data.Dataset):
     def __init__(self, path, transform=None):
         self.paths = []
         self.transform = transform
-        
+        self.train_mode = True
+
         labels = []
-        for file in os.listdir(path):
+        for file in sorted(os.listdir(path)):
             full_path = os.path.join(path, file)
             if os.path.isdir(full_path):
                 continue
@@ -59,6 +60,6 @@ class OCRDataset(torch.utils.data.Dataset):
     def __getitem__(self, index):
         img = Image.open(self.paths[index]).convert("L")
         target = torch.tensor(self.labels[index]).long()
-        if self.transform is not None:
+        if self.transform is not None and self.train_mode:
             img = self.transform(img)
         return img, target
