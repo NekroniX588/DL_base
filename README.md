@@ -8,4 +8,10 @@
 
 Просмотр визуализации `tensorboard --logdir runs`
 
+Также графики Train Loss и CER лежат в папке `images`
+
 CER = 0.074 
+
+# Анализ ошибок
+
+Можно посмотреть в ноутбуке ErrorAnalisys.ipynb
